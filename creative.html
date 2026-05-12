@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creative Pipeline Showcase</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      background: #0f172a;
+      overflow-x: hidden;
+    }
+
+    .glass {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .workflow-card:hover {
+      transform: translateX(8px);
+      border-color: rgba(34, 211, 238, 0.4);
+    }
+
+    .workflow-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .preview-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background-size: 300% 300%;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-slate-950 text-white font-sans">
+
+  <div id="app"></div>
+
+  <script>
+    const sections = [
+      {
+        title: "Blender Animation",
+        subtitle: "Animazione 3D / 3D Animation",
+        descriptionIT:
+          "Processo creativo dietro una sequenza animata realizzata in Blender. Dalla costruzione iniziale della scena fino alla rifinitura del movimento, ogni fase è stata sviluppata per ottenere un’animazione credibile, fluida e visivamente coinvolgente.",
+        descriptionEN:
+          "This project explores the creative process behind an animated sequence built in Blender. From the initial scene construction to the final motion polish, every stage was designed to achieve smooth, believable, and visually engaging animation.",
+        steps: [
+          {
+            it: "Impostazione della scena e modellazione base.",
+            en: "Scene setup and base modeling.",
+            bgPosition: "0% 0%",
+          },
+          {
+            it: "Animazione tramite keyframe e timeline.",
+            en: "Animation using keyframes and timeline editing.",
+            bgPosition: "50% 0%",
+          },
+          {
+            it: "Refinement finale delle curve di movimento.",
+            en: "Final refinement of motion curves.",
+            bgPosition: "100% 0%",
+          },
+        ],
+        image: "images/blender-animation.png",
+        workflowImage: "images/workflow-overview.png",
+        accent: "from-orange-500 to-yellow-400",
+      },
+      {
+        title: "Nomad Sculpt",
+        subtitle: "Scultura Digitale / Digital Sculpting",
+        descriptionIT:
+          "La fase di sculpting è stata sviluppata su iPad con Nomad Sculpt, utilizzando un workflow intuitivo ma professionale. Il focus è stato posto sulla costruzione del personaggio anime e sull’equilibrio tra dettaglio stilizzato e leggibilità delle forme.",
+        descriptionEN:
+          "The sculpting phase was developed on iPad using Nomad Sculpt with a professional yet intuitive workflow. The focus was on shaping the anime character while balancing stylized detail and clear readable forms.",
+        steps: [
+          {
+            it: "Costruzione delle forme principali.",
+            en: "Building the main character forms.",
+            bgPosition: "0% 0%",
+          },
+          {
+            it: "Definizione dei dettagli anatomici.",
+            en: "Defining anatomical details.",
+            bgPosition: "50% 50%",
+          },
+          {
+            it: "Ottimizzazione finale della mesh.",
+            en: "Final mesh optimization.",
+            bgPosition: "100% 50%",
+          },
+        ],
+        image: "images/nomad-sculpt.png",
+        workflowImage: "images/workflow-overview.png",
+        accent: "from-purple-500 to-pink-400",
+      },
+      {
+        title: "MediBang Paint",
+        subtitle: "Illustrazione 2D / 2D Illustration",
+        descriptionIT:
+          "L’illustrazione finale è stata realizzata in MediBang Paint con particolare attenzione alle sfumature morbide, alla gestione della luce e alla composizione cinematografica. L’obiettivo era creare un’immagine elegante e atmosferica.",
+        descriptionEN:
+          "The final illustration was created in MediBang Paint with strong attention to soft gradients, lighting control, and cinematic composition. The goal was to achieve an elegant and atmospheric visual result.",
+        steps: [
+          {
+            it: "Creazione dello sketch iniziale.",
+            en: "Creating the initial sketch.",
+            bgPosition: "0% 100%",
+          },
+          {
+            it: "Applicazione di colori e sfumature.",
+            en: "Applying colors and gradients.",
+            bgPosition: "50% 100%",
+          },
+          {
+            it: "Rendering finale con effetti di luce.",
+            en: "Final rendering with lighting effects.",
+            bgPosition: "100% 100%",
+          },
+        ],
+        image: "images/medibang-illustration.png",
+        workflowImage: "images/workflow-overview.png",
+        accent: "from-cyan-500 to-blue-500",
+      },
+    ];
+
+    let language = "it";
+
+    function render() {
+      const app = document.getElementById("app");
+
+      app.innerHTML = `
+
+      <header class="relative py-24 px-6 border-b border-white/10 bg-gradient-to-b from-slate-900 to-slate-950">
+        <div class="max-w-6xl mx-auto text-center">
+
+          <div class="flex items-center justify-center gap-4 mb-10 flex-wrap">
+            <button
+              onclick="setLanguage('it')"
+              class="px-6 py-3 rounded-full font-semibold transition-all duration-300 border ${language === 'it'
+                ? 'bg-cyan-400 text-black border-cyan-300 shadow-lg shadow-cyan-500/30'
+                : 'bg-white/5 border-white/10 text-white hover:bg-white/10'}">
+              🇮🇹 Italiano
+            </button>
+
+            <button
+              onclick="setLanguage('en')"
+              class="px-6 py-3 rounded-full font-semibold transition-all duration-300 border ${language === 'en'
+                ? 'bg-purple-400 text-black border-purple-300 shadow-lg shadow-purple-500/30'
+                : 'bg-white/5 border-white/10 text-white hover:bg-white/10'}">
+              🇬🇧 English
+            </button>
+          </div>
+
+          <p class="uppercase tracking-[0.35em] text-sm text-cyan-400 mb-4">
+            Creative Workflow Showcase
+          </p>
+
+          <h1 class="text-5xl md:text-7xl font-black leading-tight">
+            3D & 2D Production Pipeline
+          </h1>
+
+          <p class="mt-8 text-lg text-slate-300 max-w-4xl mx-auto leading-relaxed">
+            ${language === 'it'
+              ? 'Workflow creativo dietro alle animazioni 3D, sculpting digitale e illustrazione 2D.'
+              : 'Creative workflow behind 3D animation, digital sculpting, and 2D illustration.'}
+          </p>
+        </div>
+      </header>
+
+      <main class="max-w-7xl mx-auto px-6 py-20 space-y-28">
+
+        ${sections.map(section => `
+
+        <section class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/5 glass group">
+
+          <div class="absolute inset-0 opacity-10 bg-gradient-to-r ${section.accent}"></div>
+
+          <div class="grid lg:grid-cols-2 items-stretch">
+
+            <div class="relative overflow-hidden min-h-[420px] workflow-image">
+              <img
+                src="${section.image}"
+                alt="${section.title}"
+                class="w-full h-full object-cover transition-transform duration-700"
+              />
+
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+
+              <div class="absolute bottom-8 left-8 right-8">
+                <span class="inline-block px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r ${section.accent}">
+                  Software Workflow
+                </span>
+
+                <h2 class="text-4xl font-bold mt-4">
+                  ${section.title}
+                </h2>
+
+                <p class="text-slate-200 mt-2 text-lg">
+                  ${section.subtitle}
+                </p>
+              </div>
+            </div>
+
+            <div class="relative p-10 lg:p-14 flex flex-col justify-center">
+
+              <div class="mb-10">
+                <h3 class="text-2xl font-bold mb-4 text-cyan-300">
+                  ${language === 'it' ? 'Descrizione del Workflow' : 'Workflow Overview'}
+                </h3>
+
+                <p class="text-slate-300 leading-relaxed text-lg">
+                  ${language === 'it' ? section.descriptionIT : section.descriptionEN}
+                </p>
+              </div>
+
+              <div class="space-y-5">
+
+                ${section.steps.map((step, stepIndex) => `
+
+                <div class="relative overflow-hidden rounded-2xl border border-white/10 bg-black/20 transition-all duration-500 workflow-card">
+
+                  <div class="relative h-44 overflow-hidden border-b border-white/10">
+                    <div
+                      class="preview-frame"
+                      style="background-image:url('${section.workflowImage}'); background-position:${step.bgPosition};"
+                    ></div>
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                  </div>
+
+                  <div class="absolute left-0 top-0 h-full w-1 bg-cyan-400"></div>
+
+                  <div class="p-5 pl-6">
+                    <p class="text-cyan-300 font-semibold text-sm uppercase tracking-wider mb-2">
+                      ${language === 'it' ? `Fase ${stepIndex + 1}` : `Step ${stepIndex + 1}`}
+                    </p>
+
+                    <p class="text-white font-medium leading-relaxed">
+                      ${language === 'it' ? step.it : step.en}
+                    </p>
+                  </div>
+
+                </div>
+
+                `).join('')}
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        `).join('')}
+
+      </main>
+
+      <section class="py-24 px-6 border-t border-white/10 bg-black/30">
+        <div class="max-w-5xl mx-auto text-center">
+
+          <h2 class="text-4xl font-black mb-6">
+            ${language === 'it'
+              ? 'Percorso Educativa e Professionale'
+              : 'Educational & Professional Presentation'}
+          </h2>
+
+          <p class="text-slate-300 text-lg leading-relaxed max-w-4xl mx-auto">
+            ${language === 'it'
+              ? 'Questa pagina è progettata come una moderna vetrina digitale per portfolio professionali e GitHub Pages.'
+              : 'This page is designed as a modern digital showcase for professional portfolios and GitHub Pages.'}
+          </p>
+
+          <div class="mt-12 grid md:grid-cols-3 gap-6 text-left">
+
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-6 glass">
+              <h3 class="text-2xl font-bold text-orange-300 mb-4">
+                Blender
+              </h3>
+
+              <p class="text-slate-300 leading-relaxed">
+                Industry-standard software for modeling, animation, rendering,
+                and visual production.
+              </p>
+            </div>
+
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-6 glass">
+              <h3 class="text-2xl font-bold text-pink-300 mb-4">
+                Nomad Sculpt
+              </h3>
+
+              <p class="text-slate-300 leading-relaxed">
+                Advanced sculpting experience optimized for iPad workflows.
+              </p>
+            </div>
+
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-6 glass">
+              <h3 class="text-2xl font-bold text-cyan-300 mb-4">
+                MediBang Paint
+              </h3>
+
+              <p class="text-slate-300 leading-relaxed">
+                Digital illustration software specialized in anime and manga
+                style rendering.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <footer class="py-10 text-center text-slate-500 border-t border-white/10">
+        <p>© 2026 Creative Showcase • Ready for GitHub Pages Deployment</p>
+      </footer>
+
+      `;
+    }
+
+    function setLanguage(lang) {
+      language = lang;
+      render();
+    }
+
+    render();
+  </script>
+
+</body>
+</html>
