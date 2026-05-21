@@ -75,7 +75,7 @@
         .navbar nav {
             display: flex;
             gap: 25px;
-            margin-left: auto; /* Spinge i link e il resto a destra creando spazio dal logo */
+            margin-left: auto; 
             margin-right: 25px;
         }
 
@@ -184,8 +184,8 @@
         .pipeline-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
+            gap: 20px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -207,58 +207,58 @@
             transform: translateY(-5px);
         }
 
-        /* Immagini Hacker Stabili */
+        /* Gestione Immagini */
         .card-image {
             width: 100%;
-            height: 160px;
+            height: 140px;
             object-fit: cover;
             border-bottom: 1px solid #222;
             filter: brightness(80%);
             transition: 0.3s;
+            background-color: #141414; /* Colore di sfondo se l'immagine manca */
         }
         .pipeline-card:hover .card-image {
             filter: brightness(100%);
-            box-shadow: inset 0 0 10px var(--neon-green);
         }
 
         .card-info {
-            padding: 25px 25px 15px 25px;
+            padding: 20px 20px 15px 20px;
             flex-grow: 1;
         }
 
         .stage-number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
             color: rgba(0, 255, 102, 0.08);
             position: absolute;
-            top: 170px;
-            right: 20px;
+            top: 150px;
+            right: 15px;
         }
 
         .pipeline-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.3rem;
+            margin-bottom: 12px;
+            font-size: 1.15rem;
             color: #fff;
         }
 
         .pipeline-card p {
             color: var(--text-gray);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 0.85rem;
+            line-height: 1.5;
             margin-bottom: 15px;
         }
 
         /* TERMINAL / CODE SNIPPET BLOCK */
         .code-block {
             background-color: #000;
-            padding: 12px;
-            margin: 0 25px 25px 25px;
+            padding: 10px;
+            margin: 0 20px 20px 20px;
             border-left: 3px solid var(--neon-green);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             color: var(--neon-green);
             overflow-x: auto;
             white-space: nowrap;
-            min-height: 43px;
+            min-height: 38px;
             display: flex;
             align-items: center;
         }
@@ -304,8 +304,14 @@
         }
 
         /* ==========================================
-           RESPONSIVE FIXES (MOBILE OPTIMIZATION)
+           RESPONSIVE FIXES (DESKTOP & MOBILE)
            ========================================== */
+        @media (min-width: 1024px) {
+            .pipeline-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
             .navbar { 
                 padding: 15px 20px; 
@@ -355,7 +361,6 @@
 
     <!-- Header / Navbar -->
     <header class="navbar">
-        <!-- Ridotto il testo del logo per fare spazio agli elementi di navigazione -->
         <div class="logo">ROOT_</div>
         <nav>
             <a href="#moduli" data-lang-it="Pipeline" data-lang-en="Pipeline">Pipeline</a>
@@ -384,7 +389,8 @@
             <!-- Stage 1 -->
             <div class="pipeline-card">
                 <div>
-                    <img src="images/row-1-column-1.png" alt="Information Gathering" class="card-image">
+                    <!-- Puntatore locale alla cartella images/ per lo Stage 01 -->
+                    <img src="images/row-1-column-1.png" alt="[STAGE 01] RECON" class="card-image">
                     <div class="card-info">
                         <div class="stage-number">01</div>
                         <h3 data-lang-it="Information Gathering" data-lang-en="Information Gathering">Information Gathering</h3>
@@ -399,7 +405,8 @@
             <!-- Stage 2 -->
             <div class="pipeline-card">
                 <div>
-                    <img src="images/row-1-column-2.png" alt="Vulnerability Analysis" class="card-image">
+                    <!-- Puntatore locale alla cartella images/ per lo Stage 02 -->
+                    <img src="images/row-1-column-2.png" alt="[STAGE 02] ANALYSIS" class="card-image">
                     <div class="card-info">
                         <div class="stage-number">02</div>
                         <h3 data-lang-it="Vulnerability Analysis" data-lang-en="Vulnerability Analysis">Vulnerability Analysis</h3>
@@ -414,7 +421,8 @@
             <!-- Stage 3 -->
             <div class="pipeline-card">
                 <div>
-                    <img src="images/row-1-column-3.png" alt="Exploitation & Coding" class="card-image">
+                    <!-- Puntatore locale alla cartella images/ per lo Stage 03 -->
+                    <img src="images/row-1-column-3.png" alt="[STAGE 03] EXPLOIT" class="card-image">
                     <div class="card-info">
                         <div class="stage-number">03</div>
                         <h3 data-lang-it="Exploitation & Coding" data-lang-en="Exploitation & Coding">Exploitation & Coding</h3>
@@ -429,7 +437,8 @@
             <!-- Stage 4 -->
             <div class="pipeline-card">
                 <div>
-                    <img src="images/row-1-column-4.png" alt="Post-Exploitation" class="card-image">
+                    <!-- Puntatore locale alla cartella images/ per lo Stage 04 -->
+                    <img src="images/row-1-column-4.png" alt="[STAGE 04] POST-EXP" class="card-image">
                     <div class="card-info">
                         <div class="stage-number">04</div>
                         <h3 data-lang-it="Post-Exploitation" data-lang-en="Post-Exploitation">Post-Exploitation</h3>
@@ -457,7 +466,7 @@
        ========================================== -->
     <script>
         /* ==========================================
-           CONFIGURAZIONE PAYPAL.ME DIRECT LINK
+           REINDIRIZZAMENTO PAYPAL.ME PERSONALIZZATO
            ========================================== */
         function redirectToPayPal() {
             window.location.href = "https://paypal.me/doamaralraul/500";
