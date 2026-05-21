@@ -68,6 +68,7 @@
             font-weight: bold;
             font-size: 1.2rem;
             text-shadow: 0 0 8px var(--neon-glow);
+            white-space: nowrap;
         }
 
         .nav-right {
@@ -76,10 +77,16 @@
             gap: 20px;
         }
 
+        .navbar nav {
+            display: flex;
+            gap: 20px;
+        }
+
         .navbar nav a {
             color: var(--text-white);
             text-decoration: none;
             transition: 0.3s;
+            white-space: nowrap; /* Impedisce al singolo link di andare a capo */
         }
 
         .navbar nav a:hover {
@@ -293,10 +300,44 @@
             line-height: 1.6;
         }
 
+        /* ==========================================
+           RESPONSIVE FIXES (MOBILE OPTIMIZATION)
+           ========================================== */
         @media (max-width: 768px) {
-            .navbar { padding: 20px; }
-            .pipeline-container { padding: 60px 20px; }
-            .hero-content h1 { font-size: 2.2rem; }
+            .navbar { 
+                padding: 15px 20px; 
+            }
+            .logo {
+                font-size: 1rem; /* Riduce leggermente il logo su mobile */
+            }
+            .nav-right {
+                gap: 10px; /* Riduce lo spazio tra i blocchi della nav a destra */
+            }
+            .navbar nav {
+                gap: 12px; /* Riduce lo spazio interno tra Pipeline e Live Lab */
+            }
+            .navbar nav a {
+                font-size: 0.9rem; /* Testo leggermente più piccolo per evitare l'andata a capo */
+            }
+            .btn-lang {
+                padding: 4px 8px;
+                font-size: 0.8rem;
+            }
+            .pipeline-container { 
+                padding: 60px 20px; 
+            }
+            .hero-content h1 { 
+                font-size: 2.2rem; 
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar nav {
+                gap: 8px; /* Ottimizzazione ulteriore per schermi molto piccoli (es. iPhone SE) */
+            }
+            .navbar nav a {
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
@@ -335,8 +376,7 @@
             <!-- Stage 1 -->
             <div class="pipeline-card">
                 <div>
-                    <!-- Segnaposto stabile a tema Cyber 1 -->
-                    <img src="images/row-1-column-1.png" alt="Information Gathering" class="card-image">
+                    <img src="https://placehold.co[STAGE+01]+RECON" alt="Information Gathering" class="card-image">
                     <div class="card-info">
                         <div class="stage-number">01</div>
                         <h3 data-lang-it="Information Gathering" data-lang-en="Information Gathering">Information Gathering</h3>
@@ -351,8 +391,7 @@
             <!-- Stage 2 -->
             <div class="pipeline-card">
                 <div>
-                    <!-- Segnaposto stabile a tema Cyber 2 -->
-                    <img src="images/row-1-column-2.png" alt="Vulnerability Analysis" class="card-image">
+                    <img src="https://placehold.co[STAGE+02]+ANALYSIS" alt="Vulnerability Analysis" class="card-image">
                     <div class="card-info">
                         <div class="stage-number">02</div>
                         <h3 data-lang-it="Vulnerability Analysis" data-lang-en="Vulnerability Analysis">Vulnerability Analysis</h3>
@@ -367,8 +406,7 @@
             <!-- Stage 3 -->
             <div class="pipeline-card">
                 <div>
-                    <!-- Segnaposto stabile a tema Cyber 3 -->
-                    <img src="images/row-1-column-3.png" alt="Exploitation & Coding" class="card-image">
+                    <img src="https://placehold.co[STAGE+03]+EXPLOIT" alt="Exploitation & Coding" class="card-image">
                     <div class="card-info">
                         <div class="stage-number">03</div>
                         <h3 data-lang-it="Exploitation & Coding" data-lang-en="Exploitation & Coding">Exploitation & Coding</h3>
@@ -383,8 +421,7 @@
             <!-- Stage 4 -->
             <div class="pipeline-card">
                 <div>
-                    <!-- Segnaposto stabile a tema Cyber 4 -->
-                    <img src="images/row-1-column-4.png" alt="Post-Exploitation" class="card-image">
+                    <img src="https://placehold.co[STAGE+04]+POST-EXP" alt="Post-Exploitation" class="card-image">
                     <div class="card-info">
                         <div class="stage-number">04</div>
                         <h3 data-lang-it="Post-Exploitation" data-lang-en="Post-Exploitation">Post-Exploitation</h3>
@@ -415,7 +452,7 @@
            CONFIGURAZIONE PAYPAL.ME DIRECT LINK
            ========================================== */
         function redirectToPayPal() {
-            window.location.href = "https://paypal.me/doamaralraul/500";
+            window.location.href = "https://paypal.me";
         }
 
         /* 1. ANIMAZIONE BACKGROUND MATRIX RAIN */
